@@ -44,9 +44,11 @@ Finished up some of the color stuff on the application. Gave it a matrix color. 
 Adding a label below the buttons to change to the Password when its generated so I can see it on the app instead of the terminal or have to paste it somewhere to see.
 Got that working!
 
-Now, I want to add a database to this. I'm thinking of turning it into my own little password manager.
+Now, I want to add a database to this and turn it into my own little password manager.
 I'll be using SQLite, which I am also partially new to, but trial and error should help me figure this out. 
 I will also be encrypting the data as well!
 
 
-I'm currently typing a lot of stuff, without checking if its working or not, so im either being awesome, or about to have to delete a lot of wasted work.
+I'm currently typing a lot of stuff without checking if it's working or not, so I'm either being awesome or about to have to delete a lot of wasted work.
+
+I'm making this SQL database off a quick tutorial and some occasional stack overflow. I'm learning stuff as I go and hoping I'm not breaking anything.
