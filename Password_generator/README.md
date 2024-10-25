@@ -20,3 +20,6 @@ I also found the password was copying without press the copy password function.
 
 I found after some searching that the "command=" actually automatically runs the command because it expects a function, not the result of a function call. So to counter this, I wrap it in an anonymous function. 
 
+
+Added the .geometry() function to change the window size and its position
+added some math to center it as well
