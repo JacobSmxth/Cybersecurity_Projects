@@ -137,6 +137,9 @@ length_slider = Scale(
     tickinterval=24,
     bg="#0d0d0d",
     fg="#39FF14",
+    troughcolor="#39FF14",
+    highlightbackground="#0d0d0d",
+    activebackground="#0d0d0d",
 )
 length_slider.set(16)
 length_slider.grid(row=0, column=1, padx=5)
@@ -149,18 +152,38 @@ numbers_var = BooleanVar()
 symbols_var = BooleanVar()
 
 # Checkboxes
-Checkbutton(frame, text="a-z", variable=lcletters_var).grid(
-    row=1, column=0, sticky="w", padx=5, pady=5
-)
-Checkbutton(frame, text="A-Z", variable=ucletters_var).grid(
-    row=2, column=0, sticky="w", padx=5, pady=5
-)
-Checkbutton(frame, text="0-9", variable=numbers_var).grid(
-    row=3, column=0, sticky="w", padx=5, pady=5
-)
-Checkbutton(frame, text="!@#$%^&*", variable=symbols_var).grid(
-    row=4, column=0, sticky="w", padx=5, pady=5
-)
+Checkbutton(
+    frame,
+    text="a-z",
+    variable=lcletters_var,
+    bg="#0d0d0d",
+    fg="#39FF14",
+    selectcolor="#0d0d0d",
+).grid(row=1, column=0, sticky="w", padx=5, pady=5)
+Checkbutton(
+    frame,
+    text="A-Z",
+    variable=ucletters_var,
+    bg="#0d0d0d",
+    fg="#39FF14",
+    selectcolor="#0d0d0d",
+).grid(row=2, column=0, sticky="w", padx=5, pady=5)
+Checkbutton(
+    frame,
+    text="0-9",
+    variable=numbers_var,
+    bg="#0d0d0d",
+    fg="#39FF14",
+    selectcolor="#0d0d0d",
+).grid(row=3, column=0, sticky="w", padx=5, pady=5)
+Checkbutton(
+    frame,
+    text="!@#$%^&*",
+    variable=symbols_var,
+    bg="#0d0d0d",
+    fg="#39FF14",
+    selectcolor="#0d0d0d",
+).grid(row=4, column=0, sticky="w", padx=5, pady=5)
 # Frame for the generate and copy buttons
 button_frame = Frame(m, bg="#0d0d0d")
 button_frame.pack(pady=10)
@@ -175,5 +198,7 @@ generate_btn = Button(
     width=15,
 )
 generate_btn.grid(row=0, column=0, padx=5)
+
+password_label = Label()
 
 m.mainloop()
