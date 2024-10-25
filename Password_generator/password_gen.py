@@ -2,7 +2,7 @@ import os
 import random
 import string
 from tkinter import *
-from tkinter import ttk, Toplevel, messagebox, Tk
+from tkinter import ttk, Toplevel, messagebox, Tk, PhotoImage
 import time
 import pyperclip
 import sqlite3
@@ -148,8 +148,9 @@ def decrypt_password(encrypted_password):
 m = Tk()
 m.title("Password Generator")
 
-icon_path = os.path.abspath("icon.ico")
-m.iconbitmap(icon_path)
+icon_path = os.path.abspath("Password_generator/icon.png")
+icon = PhotoImage(file=icon_path)
+m.iconphoto(True, icon)
 
 
 # Calculating center as well
