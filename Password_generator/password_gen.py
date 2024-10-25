@@ -1,10 +1,147 @@
 import random
 import string
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, Toplevel, messagebox
 import time
 import pyperclip
+import sqlite3
+from cryptography.fernet import Fernet
 
+# Database Stuff _________________________________________________________________
+# Connect to SQLite database
+connect = sqlite3.connect("passwords.db")
+
+# To interact with database i make a cursor
+c = connect.cursor()
+
+# I make a table for all passwords
+c.execute(
+    """CREATE TABLE IF NOT EXISTS passwords (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            website TEXT NOT NULL,
+            username TEXT NOT NULL,
+            password TEXT NOT NULL,
+            length INTEGER
+          )"""
+)
+
+# Commit changes to database and close connection
+connect.commit()
+connect.close()
+
+
+# Save password to database
+def save_pass(password, length):
+
+    # make prompt window
+    prompt_window = Toplevel(m)
+    prompt_window.title("Enter Website and Username")
+    prompt_window.geometry("600x400")
+    prompt_window.configure(bg="#0d0d0d")
+
+    # labels and entry fields for the variables
+    Label(prompt_window, text="Website: ", bg="#0d0d0d", fg="#39FF14").grid(
+        row=0, column=0
+    )
+    website_entry = Entry(prompt_window, width=30)
+    website_entry.grid(row=0, column=1, padx=10, pady=10)
+    Label(prompt_window, text="Username: ", bg="#0d0d0d", fg="#39FF14").grid(
+        row=1, column=0
+    )
+    username_entry = Entry(prompt_window, width=30)
+    username_entry.grid(row=1, column=1, padx=10, pady=10)
+
+    # Validate and Submit function
+    def valid_and_submit():
+        website = website_entry.get().strip()
+        username = username_entry.get().strip()
+
+        # Function pops up message if empty entry
+        def if_empty(field_name, value):
+            if not value:
+                response = messagebox.askyesno(
+                    "Empty field",
+                    f"Are you sure you want to leave the {field_name} blank?",
+                )
+                if response:
+                    return "{empty}"
+                else:
+                    return None
+            return value
+
+        # Validate website and username
+        website = if_empty("Website", website)
+        if website is None:
+            return
+        username = if_empty("Username", username)
+        if username is None:
+            return
+
+        connect = sqlite3.connect("passwords.db")  # Reopen connection
+        c = connect.cursor()
+        c.execute(
+            "INSERT INTO passwords (website, username, password, length) VALUES (?, ?, ?, ?)",
+            (website, username, password, length),
+        )
+        connect.commit()
+        connect.close()
+        print("Saved!")
+
+        messagebox.showinfo("Success", "Password saved successfully!")
+        prompt_window.destroy()
+
+    # Save button
+    Button(
+        prompt_window, text="Save", command=valid_and_submit, bg="#0d0d0d", fg="#39FF14"
+    ).grid(row=3, columnspan=2, pady=10)
+
+
+def show_saved_pass():
+    connect = sqlite3.connect("passwords.db")
+    c = connect.cursor()
+
+    # Retrieve all the passwords
+    c.execute("SELECT website, username, password FROM passwords")
+    rows = c.fetchall()
+    connect.close()
+
+    # New window with saved passwords
+    saved_window = Toplevel()
+    saved_window.title("Saved Passwords")
+    saved_window.geometry("600x400")
+
+    # Trying the treeview widget
+    tree = ttk.Treeview(
+        saved_window, columns=("Website", "Username", "Password"), show="headings"
+    )
+    tree.heading("Website", text="Website")
+    tree.heading("Username", text="Username")
+    tree.heading("Password", text="Password")
+    tree.pack(expand=True, fill=BOTH)
+
+    # Insert data into Treeview
+    for row in rows:
+        tree.insert("", "end", values=row)
+
+
+# Encryption Stuff ______________________________________________________________
+
+# Generate a key (In real applications, I would store this securely)
+encryption_key = Fernet.generate_key()
+cipher = Fernet(encryption_key)
+
+
+# Password encryption function
+def encrypt_password(password):
+    return cipher.encrypt(password.encode())
+
+
+# Password decryption function
+def decrypt_password(encrypted_password):
+    return cipher.decrypt(encrypt_password).decode()
+
+
+# Widget Stuff ____________________________________________________________________
 # Create the main window for the generator
 # Tkinter is completely new to me so i'm learning this as I go and read the documentation
 m = Tk()
@@ -110,6 +247,7 @@ def generate_password():
         if is_valid_pass(password):
             break
 
+    # Display on GUI
     password_label.config(text=f"Generated Password: {password}")
 
     copy_btn = Button(
@@ -121,6 +259,16 @@ def generate_password():
         width=15,
     )
     copy_btn.grid(row=0, column=1, padx=5)
+
+    save_btn = Button(
+        button_frame,
+        text="Save Password",
+        command=lambda: save_pass(password, length),
+        bg="#0d0d0d",
+        fg="#39FF14",
+        width=15,
+    )
+    save_btn.grid(row=0, column=2, padx=5)
 
 
 # Label for length slider
@@ -201,5 +349,9 @@ generate_btn.grid(row=0, column=0, padx=5)
 
 password_label = Label(m, text="", font=label_font, bg="#0d0d0d", fg="#39FF14")
 password_label.pack(pady=10)
+
+Button(
+    m, text="Show Saved Passwords", command=show_saved_pass, bg="#0d0d0d", fg="#39FF14"
+).pack(pady=5)
 
 m.mainloop()
