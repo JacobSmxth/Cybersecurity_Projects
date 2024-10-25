@@ -91,7 +91,7 @@ def generate_password():
 
     # If statement to check that atleast one value was checked
     if not characters:
-        print("Please select atleast one character type")
+        password_label.config(text=f" PICK A CHARACTER TYPE ")
         return
 
     # Adding progress bar because I just found it
@@ -110,7 +110,7 @@ def generate_password():
         if is_valid_pass(password):
             break
 
-    print(f"Generated Password: {password}")
+    password_label.config(text=f"Generated Password: {password}")
 
     copy_btn = Button(
         button_frame,
@@ -199,6 +199,7 @@ generate_btn = Button(
 )
 generate_btn.grid(row=0, column=0, padx=5)
 
-password_label = Label()
+password_label = Label(m, text="", font=label_font, bg="#0d0d0d", fg="#39FF14")
+password_label.pack(pady=10)
 
 m.mainloop()
