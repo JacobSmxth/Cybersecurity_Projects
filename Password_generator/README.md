@@ -26,3 +26,6 @@ added some math to center it as well
 
 
 I'm trying to style the window to be more appealing to the User
+
+
+I was trying to use the .grid() function. Kept getting errors. I found that I can not use both the pack and grid functions on the same widgets. I should read the documentation more.
