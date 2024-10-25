@@ -54,3 +54,5 @@ I'm currently typing a lot of stuff without checking if it's working or not, so 
 I'm making this SQL database off a quick tutorial and some occasional stack overflow. I'm learning stuff as I go and hoping I'm not breaking anything.
 
 Going to try something called a Treeview from tkinter. Hopefully the program will open a new window to access the saved passwords.
+
+I ACTUALLY GOT THIS TO WORK. I haveen't had something go first try like that in this file for a little so this was nice. I just need to add a prompt when I click the Save password button to enter the website, as well as the username.
