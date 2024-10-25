@@ -42,3 +42,20 @@ It's technically the next day now, currently 12:50 AM, so I'm calling it a night
 Finished up some of the color stuff on the application. Gave it a matrix color. Jet Black and Neon Green.
 
 Adding a label below the buttons to change to the Password when its generated so I can see it on the app instead of the terminal or have to paste it somewhere to see.
+Got that working!
+
+Now, I want to add a database to this and turn it into my own little password manager.
+I'll be using SQLite, which I am also partially new to, but trial and error should help me figure this out. 
+I will also be encrypting the data as well!
+
+
+I'm currently typing a lot of stuff without checking if it's working or not, so I'm either being awesome or about to have to delete a lot of wasted work.
+
+I'm making this SQL database off a quick tutorial and some occasional stack overflow. I'm learning stuff as I go and hoping I'm not breaking anything.
+
+Going to try something called a Treeview from tkinter. Hopefully the program will open a new window to access the saved passwords.
+
+I ACTUALLY GOT THIS TO WORK. I haveen't had something go first try like that in this file for a little so this was nice. I just need to add a prompt when I click the Save password button to enter the website, as well as the username.
+
+
+I added some prompt to ask for the website name as well as a username. If left blank if asks if they want to keep it blank, if not it goes back. They can then enter everything. It says it has been saved in a info message as well. I love how well this is coming out to be!
