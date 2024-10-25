@@ -21,6 +21,25 @@ y_axis = (screen_height // 2) - (600 // 2)
 # Resize the window to be larger and postion it
 m.geometry(f"800x600+{x_axis}+{y_axis}")
 
+# Style window to be more user friendly
+m.configure(bg="#0d0d0d")
+
+# Header
+header = Label(
+    m,
+    text="Password Generator",
+    font=("Calibri", 20, "bold"),
+    bg="#0d0d0d",
+    fg="#39FF14",
+)
+header.pack(pady=10)
+
+# Frame to hold all widgets
+frame = Frame(m, bg="#0d0d0d", bd=2, relief="solid")
+frame.pack(pady=20, padx=10)
+
+label_font = ("Calibri", 14, "bold")
+
 
 # Copy password straight to clipboard
 def copyPassword(password):
@@ -77,14 +96,13 @@ def generate_password():
 
     # Adding progress bar because I just found it
     progress_bar = ttk.Progressbar(m, orient=HORIZONTAL, length=200, mode="determinate")
-    progress_bar.pack(pady=10)
+    progress_bar.pack()
     progress_bar["value"] = 0
     for i in range(101):
         progress_bar["value"] = i
         m.update_idletasks()
         time.sleep(0.005)
-        if i == 100:
-            progress_bar.destroy()
+    progress_bar.destroy()
 
     # Generate password AND validate it!
     while True:
@@ -94,18 +112,34 @@ def generate_password():
 
     print(f"Generated Password: {password}")
 
-    copy_btn = Button(m, text="Copy Password", command=lambda: copyPassword(password))
-    copy_btn.pack()
+    copy_btn = Button(
+        button_frame,
+        text="Copy Password",
+        command=lambda: copyPassword(password),
+        bg="#0d0d0d",
+        fg="#39FF14",
+        width=15,
+    )
+    copy_btn.grid(row=0, column=1, padx=5)
 
 
 # Label for length slider
-length_label = Label(m, text="Length:")
-length_label.pack()
+length_label = Label(frame, text="Length:", font=label_font, bg="#0d0d0d", fg="#39FF14")
+length_label.grid(row=0, column=0, padx=0)
 
 # Slider or as tkinter calls it scale widget
-length_slider = Scale(m, from_=8, to=32, orient=HORIZONTAL, length=200, tickinterval=24)
+length_slider = Scale(
+    frame,
+    from_=8,
+    to=32,
+    orient=HORIZONTAL,
+    length=200,
+    tickinterval=24,
+    bg="#0d0d0d",
+    fg="#39FF14",
+)
 length_slider.set(16)
-length_slider.pack()
+length_slider.grid(row=0, column=1, padx=5)
 
 # Variables to hold if checkbox is checked or not
 # Will add radio buttuns eventually to toggle between Passphrase, and Password
@@ -115,14 +149,31 @@ numbers_var = BooleanVar()
 symbols_var = BooleanVar()
 
 # Checkboxes
-Checkbutton(m, text="a-z", variable=lcletters_var).pack()
-Checkbutton(m, text="A-Z", variable=ucletters_var).pack()
-Checkbutton(m, text="0-9", variable=numbers_var).pack()
-Checkbutton(m, text="!@#$%^&*", variable=symbols_var).pack()
-
+Checkbutton(frame, text="a-z", variable=lcletters_var).grid(
+    row=1, column=0, sticky="w", padx=5, pady=5
+)
+Checkbutton(frame, text="A-Z", variable=ucletters_var).grid(
+    row=2, column=0, sticky="w", padx=5, pady=5
+)
+Checkbutton(frame, text="0-9", variable=numbers_var).grid(
+    row=3, column=0, sticky="w", padx=5, pady=5
+)
+Checkbutton(frame, text="!@#$%^&*", variable=symbols_var).grid(
+    row=4, column=0, sticky="w", padx=5, pady=5
+)
+# Frame for the generate and copy buttons
+button_frame = Frame(m, bg="#0d0d0d")
+button_frame.pack(pady=10)
 
 # Generate button
-generate_btn = Button(m, text=f"Generate Password", command=generate_password)
-generate_btn.pack()
+generate_btn = Button(
+    button_frame,
+    text=f"Generate Password",
+    command=generate_password,
+    bg="#0d0d0d",
+    fg="#39FF14",
+    width=15,
+)
+generate_btn.grid(row=0, column=0, padx=5)
 
 m.mainloop()
