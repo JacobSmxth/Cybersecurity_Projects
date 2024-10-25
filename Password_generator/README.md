@@ -12,4 +12,11 @@ At first, I had an if-else statement to check if at least one character type was
 Currently, I'm just printing to the console because I haven't figured out how to get a message to pop up or for a label to change.
 
 importing pyperclip to make it copy straight to clipboard
+While testing this, I realized this doesn't guarantee that each checked item will be in the phrase. So, I will have it check the password to see if it contains at least one of each character type selected.
+
+Made a function to validate it, then made a loop that continues until a valid password is generated.
+
+I also found the password was copying without press the copy password function.
+
+I found after some searching that the "command=" actually automatically runs the command because it expects a function, not the result of a function call. So to counter this, I wrap it in an anonymous function.
 
