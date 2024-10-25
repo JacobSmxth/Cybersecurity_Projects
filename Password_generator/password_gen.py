@@ -11,8 +11,30 @@ m.title("Password Generator")
 # function to generate password
 # I want to have a selection of choices to make the password that is generated, how the user wants
 def generate_password():
-    # Code in here
-    print("Password Generate")
+    # This is where I tested all the values to make surew I was using them correctly
+
+    # print(length_slider.get())
+    # if lcletters_var.get():
+    #     print("Lowercase Checked!")
+    # if ucletters_var.get():
+    #     print("Uppercase Checked!")
+    # if numbers_var.get():
+    #     print("Numbers Checked!")
+    # if symbols_var.get():
+    #     print("Symbols Checked!")
+
+    # Variable holds length
+    length = length_slider.get()
+
+    # all available characters depending on inputs
+    characters = ""
+
+    if lcletters_var.get():
+        characters += string.ascii_lowercase
+    if ucletters_var.get():
+        characters += string.ascii_uppercase
+    if numbers_var.get():
+        
 
 
 # Label for length slider
