@@ -42,3 +42,8 @@ It's technically the next day now, currently 12:50 AM, so I'm calling it a night
 Finished up some of the color stuff on the application. Gave it a matrix color. Jet Black and Neon Green.
 
 Adding a label below the buttons to change to the Password when its generated so I can see it on the app instead of the terminal or have to paste it somewhere to see.
+Got that working!
+
+Now, I want to add a database to this. I'm thinking of turning it into my own little password manager.
+I'll be using SQLite, which I am also partially new to, but trial and error should help me figure this out. 
+I will also be encrypting the data as well!
