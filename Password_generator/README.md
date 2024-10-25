@@ -11,3 +11,5 @@ I also completely overlooked the .get() function needed to pull the value from t
 At first, I had an if-else statement to check if at least one character type was selected, but I found that Tkinter has a progress bar, and I want to add that to my file just because. So, I just created an if statement to see if no characters were selected, and if none were, it just returns.
 Currently, I'm just printing to the console because I haven't figured out how to get a message to pop up or for a label to change.
 
+importing pyperclip to make it copy straight to clipboard
+
