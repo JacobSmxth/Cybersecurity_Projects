@@ -28,4 +28,13 @@ added some math to center it as well
 I'm trying to style the window to be more appealing to the User
 
 
-I was trying to use the .grid() function. Kept getting errors. I found that I can not use both the pack and grid functions on the same widgets. I should read the documentation more.
+I was trying to use the .grid() function but kept getting errors. I found that I can not use both the pack and grid functions on the same widgets. I should read the documentation more.
+
+After an annoying process of making frames, changing packs to grids, and converting some grids back to packs, I think I got it to a decent form. The colors are still a little wacky, but I got it looking more styled than before. Tkinter is new to me, so I'm glad with the progress I've made.
+
+It's technically the next day now, currently 12:50 AM, so I'm calling it a night. I will finish this up tomorrow and possibly add some new features like those listed below:
+1. Option for passphrase rather than password
+2. some sort of storage or logging of the password for safe keeping
+3. encryption of the password if doing the feature above
+4. ...more...
+
