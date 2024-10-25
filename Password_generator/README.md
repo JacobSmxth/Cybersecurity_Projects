@@ -18,5 +18,5 @@ Made a function to validate it, then made a loop that continues until a valid pa
 
 I also found the password was copying without press the copy password function.
 
-I found after some searching that the "command=" actually automatically runs the command because it expects a function, not the result of a function call. So to counter this, I wrap it in an anonymous function.
+I found after some searching that the "command=" actually automatically runs the command because it expects a function, not the result of a function call. So to counter this, I wrap it in an anonymous function. 
 
