@@ -8,9 +8,12 @@ import pyperclip
 import sqlite3
 from cryptography.fernet import Fernet
 
+
 # Database Stuff _________________________________________________________________
+
+db_path = "Password_generator/passwords.db"
 # Connect to SQLite database
-connect = sqlite3.connect("passwords.db")
+connect = sqlite3.connect(db_path)
 
 # To interact with database i make a cursor
 c = connect.cursor()
@@ -78,7 +81,7 @@ def save_pass(password, length):
         if username is None:
             return
 
-        connect = sqlite3.connect("passwords.db")  # Reopen connection
+        connect = sqlite3.connect(db_path)  # Reopen connection
         c = connect.cursor()
         c.execute(
             "INSERT INTO passwords (website, username, password, length) VALUES (?, ?, ?, ?)",
@@ -98,7 +101,7 @@ def save_pass(password, length):
 
 
 def show_saved_pass():
-    connect = sqlite3.connect("passwords.db")
+    connect = sqlite3.connect(db_path)
     c = connect.cursor()
 
     # Retrieve all the passwords
