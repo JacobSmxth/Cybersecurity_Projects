@@ -38,3 +38,7 @@ It's technically the next day now, currently 12:50 AM, so I'm calling it a night
 3. encryption of the password if doing the feature above
 4. ...more...
 
+10/25/2024:
+Finished up some of the color stuff on the application. Gave it a matrix color. Jet Black and Neon Green.
+
+Adding a label below the buttons to change to the Password when its generated so I can see it on the app instead of the terminal or have to paste it somewhere to see.
